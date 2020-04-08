@@ -20,38 +20,40 @@ const search = keyword => {
 const next = () => {
   if (!isNaN(currentIndex) && results.length > 0) {
     isNext = true;
-    jumpTo();
     currentIndex++;
+    console.log(currentIndex);
+    jumpTo();
   }
 };
 
 const prev = () => {
   if (!isNaN(currentIndex) && results.length > 0) {
     isNext = false;
-    jumpTo();
     --currentIndex;
+    jumpTo();
   }
 };
 
 function jumpTo() {
   if (isNext) {
-    console.log(currentIndex);
-
-    results[currentIndex].className -= className;
-    if (results[currentIndex + 1] != undefined) {
-      results[currentIndex + 1].className += className;
-      window.scroll(0, findPos(results[currentIndex + 1]));
-    } else {
+    if (currentIndex > results.length - 1) {
+      results[currentIndex - 1].className -= className;
       currentIndex = 0;
+      results[currentIndex].className += className;
+      window.scroll(0, findPos(results[currentIndex]));
+    } else {
+      results[currentIndex - 1].className -= className;
       results[currentIndex].className += className;
       window.scroll(0, findPos(results[currentIndex]));
     }
   } else {
-    if (results[currentIndex - 1] != undefined) {
-      results[currentIndex].className -= className;
-      results[currentIndex - 1].className += className;
-      window.scroll(0, findPos(results[currentIndex - 1]));
+    if (currentIndex < 0) {
+      results[currentIndex + 1].className -= className;
+      currentIndex = results.length - 1;
+      results[currentIndex].className += className;
+      window.scroll(0, findPos(results[currentIndex]));
     } else {
+      results[currentIndex + 1].className -= className;
       results[currentIndex].className += className;
       window.scroll(0, findPos(results[currentIndex]));
     }
