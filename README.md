@@ -8,4 +8,4 @@
 
 `prev()` jump to previous keyword
 
-`reset()` remove the keyword from the search in the text
+`reset()` remove the keyword from the text
