@@ -8,12 +8,12 @@ let isNext;
 const search = keyword => {
   instance.unmark();
   instance.mark(keyword, {
-    element: "span",
+    element: "mark",
     className: "highlight",
     diacritics: true
   });
   currentIndex = 0;
-  results = content.getElementsByTagName("span");
+  results = content.getElementsByTagName("mark");
   results[0] ? (results[0].className += className) : null;
 };
 
@@ -21,7 +21,6 @@ const next = () => {
   if (!isNaN(currentIndex) && results.length > 0) {
     isNext = true;
     currentIndex++;
-    console.log(currentIndex);
     jumpTo();
   }
 };
