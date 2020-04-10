@@ -34,28 +34,29 @@ const prev = () => {
 };
 
 function jumpTo() {
+  let prevIndex = results[currentIndex - 1];
+  let nextIndex = results[currentIndex + 1];
+
   if (isNext) {
     if (currentIndex > results.length - 1) {
-      results[currentIndex - 1].className -= className;
+      prevIndex.className -= className;
       currentIndex = 0;
       results[currentIndex].className += className;
-      window.scroll(0, findPos(results[currentIndex]));
     } else {
-      results[currentIndex - 1].className -= className;
+      prevIndex.className -= className;
       results[currentIndex].className += className;
-      window.scroll(0, findPos(results[currentIndex]));
     }
+    window.scroll(0, findPos(results[currentIndex]));
   } else {
     if (currentIndex < 0) {
-      results[currentIndex + 1].className -= className;
+      nextIndex.className -= className;
       currentIndex = results.length - 1;
       results[currentIndex].className += className;
-      window.scroll(0, findPos(results[currentIndex]));
     } else {
-      results[currentIndex + 1].className -= className;
+      nextIndex.className -= className;
       results[currentIndex].className += className;
-      window.scroll(0, findPos(results[currentIndex]));
     }
+    window.scroll(0, findPos(results[currentIndex]));
   }
 }
 
