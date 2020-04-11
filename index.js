@@ -38,24 +38,18 @@ function jumpTo() {
   let nextIndex = results[currentIndex + 1];
 
   if (isNext) {
+    prevIndex.className -= className;
     if (currentIndex > results.length - 1) {
-      prevIndex.className -= className;
       currentIndex = 0;
-      results[currentIndex].className += className;
-    } else {
-      prevIndex.className -= className;
-      results[currentIndex].className += className;
     }
+    results[currentIndex].className += className;
     window.scroll(0, findPos(results[currentIndex]));
   } else {
+    nextIndex.className -= className;
     if (currentIndex < 0) {
-      nextIndex.className -= className;
       currentIndex = results.length - 1;
-      results[currentIndex].className += className;
-    } else {
-      nextIndex.className -= className;
-      results[currentIndex].className += className;
     }
+    results[currentIndex].className += className;
     window.scroll(0, findPos(results[currentIndex]));
   }
 }
